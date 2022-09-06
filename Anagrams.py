@@ -57,10 +57,10 @@ def cleanup(file_contents):
 # clean_file_contents -> clean_words
 clean_words = cleanup(dictionary)
 # Number of Words
-# print("Number of Words in book = {}".format(len(clean_words)))
+print("Number of Words in book = {}".format(len(clean_words)))
 
 
-def anagram_analyzer(clean_words):
+def find_anagrams(clean_words):
     # Pairing Anagrams by Hash value
 
     global hash_register
@@ -107,5 +107,5 @@ def anagram_analyzer(clean_words):
 
 
 if __name__ == '__main__':
-    anagrams = anagram_analyzer(clean_words)
+    anagrams = find_anagrams(clean_words)
     print(anagrams)
