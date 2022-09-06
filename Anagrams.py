@@ -57,7 +57,7 @@ def cleanup(file_contents):
 # clean_file_contents -> clean_words
 clean_words = cleanup(dictionary)
 # Number of Words
-print("Number of Words in book = {}".format(len(clean_words)))
+print("Number of Words in txt input file = {}".format(len(clean_words)))
 
 
 def find_anagrams(clean_words):

@@ -84,7 +84,7 @@
     return frequency_processed_words    
     ```
 
-    * `def find_anagrams(clean_words)` methode, that select all words from txt file, remove punctuation symbols, remove stop words, remove duplicate words
+    * `def find_anagrams(clean_words)` method, that select all words from txt file, remove punctuation symbols, remove stop words, remove duplicate words
 
     ```python
 
