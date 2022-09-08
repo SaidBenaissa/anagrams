@@ -62,7 +62,7 @@ def cleanup(contents):
         # print(word)
         if word not in processed_words_frequency.keys():
             # print(word)
-            processed_words_frequency[word] = 1
+            processed_words_frequency[word] = 1 
         else:
             processed_words_frequency[word] += 1
     ##################################################################################################################################################
