@@ -1,12 +1,8 @@
-# Format/read txt file to dictionary
-f = open('ordbok-utf8-2.txt', 'r', errors='ignore')
-dictionary = f.read()
-# print(dictionary)
+
 
 # Return the hash value for the given object.
 # Two objects that compare equal must also have the same hash value,
 # but the reverse is not necessarily true.
-
 
 def make_hash(v):
     hashed = sum((hash(x) for x in list(v)))
@@ -14,98 +10,149 @@ def make_hash(v):
 
 
 # Select all words from txt file, remove punctuation symbols, remove stop words, remove duplicate words
+# Return (dictionary with number of words) unique, clean, uppercase words, with frequencies
 processed_words = []
+def cleanup(contents):
+    splited_contents = contents.split()
+    # print(splited_contents)
+    # ############### splited_contents ###############################################################
+    # ['akte', 'aldri', 'alle', 'aller', 'allfarveien', 'allting', 'alt', 'altfor', 'andre',......]
+    # ################################################################################################
 
-
-def cleanup(file_contents):
-    # Process String Data into Lists
-    # print(file_contents)
-    processed_file_contents = file_contents.split()
-    # print(processed_file_contents)
-
-    frequency_processed_words = {}
-    # Iterate over each word
-    for word in processed_file_contents:
-        # print(word)
-        # Iterate over each alphabet of every VALID word
-        clean_word = ""
+    for word in splited_contents:
+        # print(word)#################################################################################
+        # ############ word ##########################################################################
+        # dratt
+        # dreper
+        # drev
+        # drikke
+        # drikker
+        # drive
+        # dro
+        # drog
+        # ###########################################################################################
         letters = word.split()
-        # print(letters)
+        # print(letters)#############################################################################
+        # ############ letters ######################################################################
+        # ['dram']
+        # ['dratt']
+        # ['dreper']
+        # ['drev']
+        # ['drikke']
+        # ['drikker']
+        # ['drive']
+        # ['dro']
+        # ['drog']
+        # ['dronning']
+        # ['dronningen']
+        # ['drukket'
+        # #############################################################################################
 
+        clean_word = ""
         for letter in letters:
-            # print(letter)
-            # Return True if all characters in letter are alphabetic and there is at least one character in letter, False otherwise.
+            # Return True if all characters in letter are alphabetic and there is at least one character in letter.
             if letter.isalpha():
+                # print(letter)
                 clean_word += letter
-                # print(clean_word)
                 processed_words.append("".join(clean_word))
-                # print(processed_words)
 
+    # print(processed_words)
+    processed_words_frequency = {}
     for word in processed_words:
         # print(word)
-        if word not in frequency_processed_words.keys():
+        if word not in processed_words_frequency.keys():
             # print(word)
-            frequency_processed_words[word] = 1
+            processed_words_frequency[word] = 1
         else:
-            frequency_processed_words[word] += 1
+            processed_words_frequency[word] += 1
+    ##################################################################################################################################################
+    # print(processed_words_frequency) ###############################################################################################################
+    # ##################################################################################################################################################
+    # {'akte': 1, 'aldri': 1, 'alle': 1, 'aller': 1, 'allfarveien': 1, 'allting': 1, 'alt': 1, 'altfor': 1, 'andre': 1, 'annen': 1, 'annet': 1,
+    #  'arbeid': 1, 'arbeide': 1, 'arbeidet': 1, 'arving': 1, 'at': 1, 'attpå': 1, 'av': 1, 'avdaler': 1, 'avdrukket': 1, 'avsted': 1, 'avtalen': 1,
+    # 'ba': 1, 'bak': 1, 'bakfjerdingen': 1, 'bakom': 1, 'bakst': 1, 'bakstefløy': 1, 'bakte': 1, 'bar': 1, 'bare': 1, 'barn': 1, 'bedre': 1,
+    # 'begge': 1, 'bein': 1, 'bende': 1, 'benker': 1, 'berge': 1, 'berget': 1, 'bergtrollene': 1, 'best': 1, 'beste': 1, 'bjørn': 1, 'bjørnen': 1,
+    # 'blankskurt': 1, 'ble': 1, 'blei': 1, 'bleien': 1, 'bli': 1, 'blir': 1, 'blod': 1, 'blomster': 1, 'blå': 1, 'blåne': 1, 'blåse': 1, 'blåser': 1,
+    # 'blåst': 1, 'blåste': 1, 'bodde': 1, 'bordet': 1, 'bordskuff': 1, 'bort': 1, 'borte': 1, 'bortenfor': 1, 'bortetter': 1, 'bortigjennom': 1, 'bra':
+    # ...}
+    # ####################################################################################################################################################
+    return processed_words_frequency
 
-    # Return unique, clean, uppercase words, with frequencies
-    # print(frequency_processed_words)
-    return frequency_processed_words
 
+# Format/read txt file to dictionary
+f = open('ordbok-utf8-2.txt', 'r', errors='ignore')
+input_data = f.read()
+# print(input_data)
 
-# clean_file_contents -> clean_words
-clean_words = cleanup(dictionary)
-# Number of Words
+clean_words = cleanup(input_data)
 print("Number of Words in txt input file = {}".format(len(clean_words)))
+print("----------------------------------------------")
 
-
+# clean_words ##################################################################################################################################################
+# {'akte': 1, 'aldri': 1, 'alle': 1, 'aller': 1, 'allfarveien': 1, 'allting': 1, 'alt': 1, 'altfor': 1, 'andre': 1, 'annen': 1, 'annet': 1,
+#  'arbeid': 1, 'arbeide': 1, 'arbeidet': 1, 'arving': 1, 'at': 1, 'attpå': 1, 'av': 1, 'avdaler': 1, 'avdrukket': 1, 'avsted': 1, 'avtalen': 1,
+# 'ba': 1, 'bak': 1, 'bakfjerdingen': 1, 'bakom': 1, 'bakst': 1, 'bakstefløy': 1, 'bakte': 1, 'bar': 1, 'bare': 1, 'barn': 1, 'bedre': 1,
+# 'begge': 1, 'bein': 1, 'bende': 1, 'benker': 1, 'berge': 1, 'berget': 1, 'bergtrollene': 1, 'best': 1, 'beste': 1, 'bjørn': 1, 'bjørnen': 1,
+# 'blankskurt': 1, 'ble': 1, 'blei': 1, 'bleien': 1, 'bli': 1, 'blir': 1, 'blod': 1, 'blomster': 1, 'blå': 1, 'blåne': 1, 'blåse': 1, 'blåser': 1,
+# 'blåst': 1, 'blåste': 1, 'bodde': 1, 'bordet': 1, 'bordskuff': 1, 'bort': 1, 'borte': 1, 'bortenfor': 1, 'bortetter': 1, 'bortigjennom': 1, 'bra':
+# ...}
+# ##################################################################################################################################################
 def find_anagrams(clean_words):
     # Pairing Anagrams by Hash value
+    clean_words_hash_table = {}
 
-    global hash_register
-    hash_register = {}
-
-    for i in processed_words:
-        if make_hash(i) not in hash_register.keys():
-            hash_register[make_hash(i)] = [i]
-        elif i in hash_register[make_hash(i)]:
+    for i in clean_words:
+        if make_hash(i) not in clean_words_hash_table.keys():
+            clean_words_hash_table[make_hash(i)] = [i]
+        elif i in clean_words_hash_table[make_hash(i)]:
             pass
         else:
-            hash_register[make_hash(i)].extend([i])
+            clean_words_hash_table[make_hash(i)].extend([i])
+    # clean_words_hash_table ########################################################################################################################################
+    # print(clean_words_hash_table)
+    # {10537339097141344516: ['akte'], 28998290657399899697: ['aldri'], 16787045441859543998: ['alle'], 23732445378082769830: ['aller'], 
+    # 27180652513471585905: ['allfarveien'], 23809318082807862653: ['allting'], 17737889611088371301: ['alt'],.....}
+    ##############################################################################################################################################################
 
-    # Clean hash register, only contains 2 or more values
-
-    global anagram_hash_register
-    anagram_hash_register = {}
-
-    for k, v in hash_register.items():
+    # Clean clean_words_hash_table, only contains 2 letter or more values can be anagrams
+    anagram_hash_table = {}
+    for k, v in clean_words_hash_table.items():
         if len(v) > 1:
-            anagram_hash_register[k] = v
+            anagram_hash_table[k] = v
+    # anagram_hash_table ##################################################################################################################################################
+    # print(anagram_hash_table)
+    # {10939202460068486256: ['at', 'ta'], 17281837970771535480: ['bar', 'bra'], 12315734925037834454: ['bry', 'byr'], 17532400063532796767: ['dem', 'med'],
+    # 2618809912497743718: ['den', 'ned'], -2761153685103864421: ['denne', 'enden'], 20349972161862677485: ['dra', 'rad'], 8680358601531492200: ['dro', 'ord', 'rod'], 
+    # 5174645463386486702: ['ende', 'nede'], 1588363047582415847: ['engang', 'gangen'], -6024695099541763957: ['ens', 'sen'], 15895792231552359859: ['etter', 'rette'], 
+    # -2532537009796179565: ['glinset', 'glinste'], -12260620166952086541: ['hellestein', 'steinhelle'], -8284487212338343100: ['kisten', 'skinte'], 
+    # -624407728590147382: ['kristent', 'kristnet'], -15939893538409753269: ['krok', 'rokk'], -4968710955115651889: ['lovt', 'tolv'], 
+    # -6154867287402045511: ['lysnet', 'lysten'], 952582991967380806: ['løst', 'støl'], 7659376093976842269: ['mor', 'rom'], -6191465735596780239: ['navn', 'vann'], 
+    # 26252102582603706: ['niste', 'stien'], 14360235798446913357: ['ordet', 'torde'], 15622130734821150547: ['ristet', 'sitter'], -1010517028449259186: ['rå', 'år'],
+    # -7746297740349216639: ['stuen', 'suten'], 8123032883230944162: ['søsteren', 'søstrene'], 8494312393829486020: ['truet', 'turte']}        
+    # #############################################################################################################################################################
 
     # Creates Hash values for all keys in clean_word
-
-    global hash_word
     hash_word = {}
-
     for k, v in clean_words.items():
         if make_hash(k) not in hash_word:
             hash_word[make_hash(k)] = v
         else:
             hash_word[make_hash(k)] += v
+    # print(hash_word)
+    # {18850452034543600945: 1, -17207395831741420928: 1, 6644983032283399904: 1, 2580367764680674904: 1, 15454304980901650445: 1, -9867980317127503119: 1,
+    #  2990827475666454731: 1, -4217911752670662314: 1, 11809067258873332946: 1, 38362979674384232257: 1,
+    # ...}
 
-    # # Match Clean register with frequency
-
-    global anagram_frequency_table
+    # Match Clean register with frequency
     anagram_frequency_table = {}
-
-    for k, v in anagram_hash_register.items():
+    for k, v in anagram_hash_table.items():
         if k in hash_word:
             anagram_frequency_table['{}'.format(v)] = hash_word[k]
 
     return anagram_frequency_table
 
-
 if __name__ == '__main__':
     anagrams = find_anagrams(clean_words)
-    print(anagrams)
+    print(anagrams.keys())
+    print("--------------------------------------------------")
+
