@@ -85,8 +85,8 @@ input_data = f.read()
 # print(input_data)
 
 clean_words = cleanup(input_data)
-print("Number of Words in txt input file = {}".format(len(clean_words)))
-print("----------------------------------------------")
+# print("Number of Words in txt input file = {}".format(len(clean_words)))
+# print("----------------------------------------------------------------------------------------------------------------------------------------------------------")
 
 # clean_words ##################################################################################################################################################
 # {'akte': 1, 'aldri': 1, 'alle': 1, 'aller': 1, 'allfarveien': 1, 'allting': 1, 'alt': 1, 'altfor': 1, 'andre': 1, 'annen': 1, 'annet': 1,
@@ -149,11 +149,15 @@ def find_anagrams(clean_words):
         if k in hash_word:
             anagram_frequency_table['{}'.format(v)] = hash_word[k]
 
+    # print(anagram_frequency_table)
+    for item in anagram_frequency_table:
+        print(item,"\n")
+
     return anagram_frequency_table
 
 if __name__ == '__main__':
     anagrams = find_anagrams(clean_words)
-    print(anagrams)
+    # print(anagrams)
     # print(anagrams.keys())
-    print("--------------------------------------------------")
+    # print("----------------------------------------------------------------------------------------------------------------------------------------------------------")
 
