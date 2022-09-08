@@ -32,9 +32,7 @@
   
   * Output: Expected result
 
-    ```scripte
-    {"['at', 'ta']": 2, "['bar', 'bra']": 2, "['bry', 'byr']": 2, "['dem', 'med']": 2, "['den', 'ned']": 2, "['denne', 'enden']": 2, "['dra', 'rad']": 2, "['dro', 'ord', 'rod']": 3, "['ende', 'nede']": 2, "['engang', 'gangen']": 2, "['ens', 'sen']": 2, "['etter', 'rette']": 2, "['glinset', 'glinste']": 2, "['hellestein', 'steinhelle']": 2, "['kisten', 'skinte']": 2, "['kristent', 'kristnet']": 2, "['krok', 'rokk']": 2, "['lovt', 'tolv']": 2, "['lysnet', 'lysten']": 2, "['løst', 'støl']": 2, "['mor', 'rom']": 2, "['navn', 'vann']": 2, "['niste', 'stien']": 2, "['ordet', 'torde']": 2, "['ristet', 'sitter']": 2, "['rå', 'år']": 2, "['stuen', 'suten']": 2, "['søsteren', 'søstrene']": 2, "['truet', 'turte']": 2}
-    ```
+
 
     * `def make_hash(v)` method is hash function selcted in order to have the same hash code for anagrams
 
@@ -181,5 +179,68 @@
                 anagram_frequency_table['{}'.format(v)] = hash_word[k]
 
         return anagram_frequency_table
+
+    ```
+  * Output: Expected result
+
+
+    ```python
+        ['at', 'ta'] 
+
+        ['bar', 'bra'] 
+
+        ['bry', 'byr'] 
+
+        ['dem', 'med'] 
+
+        ['den', 'ned'] 
+
+        ['denne', 'enden'] 
+
+        ['dra', 'rad'] 
+
+        ['dro', 'ord', 'rod'] 
+
+        ['ende', 'nede'] 
+
+        ['engang', 'gangen'] 
+
+        ['ens', 'sen'] 
+
+        ['etter', 'rette'] 
+
+        ['glinset', 'glinste'] 
+
+        ['hellestein', 'steinhelle'] 
+
+        ['kisten', 'skinte'] 
+
+        ['kristent', 'kristnet'] 
+
+        ['krok', 'rokk'] 
+
+        ['lovt', 'tolv'] 
+
+        ['lysnet', 'lysten'] 
+
+        ['løst', 'støl'] 
+
+        ['mor', 'rom'] 
+
+        ['navn', 'vann'] 
+
+        ['niste', 'stien'] 
+
+        ['ordet', 'torde'] 
+
+        ['ristet', 'sitter'] 
+
+        ['rå', 'år'] 
+
+        ['stuen', 'suten'] 
+
+        ['søsteren', 'søstrene'] 
+
+        ['truet', 'turte'] 
 
     ```
