@@ -181,8 +181,8 @@
         return anagram_frequency_table
 
     ```
-  * Output: Expected result
 
+  * Output: Expected result
 
     ```python
         ['at', 'ta'] 
