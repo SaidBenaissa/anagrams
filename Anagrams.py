@@ -153,6 +153,7 @@ def find_anagrams(clean_words):
 
 if __name__ == '__main__':
     anagrams = find_anagrams(clean_words)
-    print(anagrams.keys())
+    print(anagrams)
+    # print(anagrams.keys())
     print("--------------------------------------------------")
 
