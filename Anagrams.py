@@ -1,10 +1,21 @@
+# The algorithm to store anagrams will work as follows: ###############################################################
+#     - Detect anagrams via make_hash() - return same hash code for anagrams
+#     - Go through each string in the list and firstly sort its characters.
+#     - Check if any anagram of this string is already a dictionary key.
+#     - If not add this word as dictionary key otherwise add this word to the value (of type list) mapped
+#     to the existing dictionary key.
+##############################################################################################################################
+
 # Return the hash value for the given object. Two objects that compare equal must also have the same hash value,
 def make_hash(v):
     hashed = sum((hash(x) for x in list(v)))
     return hashed
 
+
 # Select all words from txt file, remove empty space
 processed_words = []
+
+
 def cleanup(contents):
     splited_contents = contents.split()
     # ############### splited_contents ###############################################################
@@ -40,7 +51,7 @@ def cleanup(contents):
         else:
             processed_words_frequency[word] = 1
     # ############ processed_words_frequency #############################################################
-    # {'akte': 1, 'aldri': 1, 'alle': 1, 'aller': 1, 'allfarveien': 1, 'allting': 1, 'alt': 1, 'altfor': 1, 
+    # {'akte': 1, 'aldri': 1, 'alle': 1, 'aller': 1, 'allfarveien': 1, 'allting': 1, 'alt': 1, 'altfor': 1,
     # ...}
     return processed_words_frequency
 
@@ -51,14 +62,16 @@ input_data = f.read()
 clean_words = cleanup(input_data)
 # print("Number of Words in txt input file = {}".format(len(clean_words)))
 # clean_words ###############################################################################################
-# {'akte': 1, 'aldri': 1, 'alle': 1, 'aller': 1, 'allfarveien': 1, 'allting': 1, 'alt': 1, 'altfor': 1, 
+# {'akte': 1, 'aldri': 1, 'alle': 1, 'aller': 1, 'allfarveien': 1, 'allting': 1, 'alt': 1, 'altfor': 1,
 # 'andre': 1, 'annen': 1, 'annet': 1,
 # ...}
 
+
 def find_anagrams(clean_words):
-    # Pairing Anagrams by Hash value
+    # Pairing Anagrams by Hash value [hash_key: value]
     clean_words_hash_table = {}
     for word in clean_words:
+        # print(word)
         if make_hash(word) not in clean_words_hash_table.keys():
             clean_words_hash_table[make_hash(word)] = [word]
             # print(clean_words_hash_table)
@@ -66,20 +79,25 @@ def find_anagrams(clean_words):
             pass
         else:
             clean_words_hash_table[make_hash(word)].extend([word])
-
+    # print(clean_words_hash_table)
     # clean_words_hash_table ############################################################
-    # {10537339097141344516: ['akte'], 28998290657399899697: ['aldri'], 16787045441859543998: ['alle'], 
+    # {10537339097141344516: ['akte'], 28998290657399899697: ['aldri'], 16787045441859543998: ['alle'],
 
-    # Clean clean_words_hash_table, only contains 2 letter or more values can be anagrams
+    # Detect anagrams and Clean clean_words_hash_table, only contains 2 letter or more values can be anagrams
     anagram_hash_table = {}
+    # ANAGRAMS WILL HAVE SAME make_hash() value ###########################
     for k, v in clean_words_hash_table.items():
         if len(v) > 1:
             anagram_hash_table[k] = v
     # anagram_hash_table ##########################################################
-    # {10939202460068486256: ['at', 'ta'], 17281837970771535480: ['bar', 'bra'], 
-    # 12315734925037834454: ['bry', 'byr'], 
+    # {10939202460068486256: ['at', 'ta'], 17281837970771535480: ['bar', 'bra'],
+    # 12315734925037834454: ['bry', 'byr'],
 
     # Creates Hash values for all keys in clean_word
+    # clean_words ###############################################################################################
+    # {'akte': 1, 'aldri': 1, 'alle': 1, 'aller': 1, 'allfarveien': 1, 'allting': 1, 'alt': 1, 'altfor': 1,
+    # 'andre': 1, 'annen': 1, 'annet': 1,
+    # ...}
     hash_word = {}
     for k, v in clean_words.items():
         if make_hash(k) not in hash_word:
@@ -96,13 +114,14 @@ def find_anagrams(clean_words):
         if k in hash_word:
             anagram_frequency_table['{}'.format(v)] = hash_word[k]
             # anagram_frequency_table[str(v)] = hash_word[k]
-
-
     # print(anagram_frequency_table)
     for k,v in anagram_frequency_table.items():
         # print(''.join(item), "\n")
-        print(k, "\n")
+        # print(k," - Are - ",v,"anagrams", "\n")
+        print(k[1:-1], "\n")
+
     return anagram_frequency_table
+
 
 if __name__ == '__main__':
     anagrams = find_anagrams(clean_words)
