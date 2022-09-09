@@ -39,7 +39,6 @@ def cleanup(contents):
             processed_words_frequency[word] += 1
         else:
             processed_words_frequency[word] = 1
-
     # ############ processed_words_frequency #############################################################
     # {'akte': 1, 'aldri': 1, 'alle': 1, 'aller': 1, 'allfarveien': 1, 'allting': 1, 'alt': 1, 'altfor': 1, 
     # ...}
@@ -50,8 +49,7 @@ def cleanup(contents):
 f = open('ordbok-utf8-2.txt', 'r', errors='ignore')
 input_data = f.read()
 clean_words = cleanup(input_data)
-print("Number of Words in txt input file = {}".format(len(clean_words)))
-
+# print("Number of Words in txt input file = {}".format(len(clean_words)))
 # clean_words ###############################################################################################
 # {'akte': 1, 'aldri': 1, 'alle': 1, 'aller': 1, 'allfarveien': 1, 'allting': 1, 'alt': 1, 'altfor': 1, 
 # 'andre': 1, 'annen': 1, 'annet': 1,
@@ -60,7 +58,6 @@ print("Number of Words in txt input file = {}".format(len(clean_words)))
 def find_anagrams(clean_words):
     # Pairing Anagrams by Hash value
     clean_words_hash_table = {}
-
     for word in clean_words:
         if make_hash(word) not in clean_words_hash_table.keys():
             clean_words_hash_table[make_hash(word)] = [word]
@@ -98,10 +95,13 @@ def find_anagrams(clean_words):
     for k, v in anagram_hash_table.items():
         if k in hash_word:
             anagram_frequency_table['{}'.format(v)] = hash_word[k]
+            # anagram_frequency_table[str(v)] = hash_word[k]
+
 
     # print(anagram_frequency_table)
-    for item in anagram_frequency_table:
-        print(item, "\n")
+    for k,v in anagram_frequency_table.items():
+        # print(''.join(item), "\n")
+        print(k, "\n")
     return anagram_frequency_table
 
 if __name__ == '__main__':
