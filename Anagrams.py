@@ -1,12 +1,4 @@
-# The algorithm to store anagrams will work as follows: ###############################################################
-#     - Detect anagrams via make_hash() - return same hash code for anagrams
-#     - Go through each string in the list and firstly sort its characters.
-#     - Check if any anagram of this string is already a dictionary key.
-#     - If not add this word as dictionary key otherwise add this word to the value (of type list) mapped
-#     to the existing dictionary key.
-##############################################################################################################################
 
-# Return the hash value for the given object. Two objects that compare equal must also have the same hash value,
 def make_hash(v):
     hashed = sum((hash(x) for x in list(v)))
     return hashed
